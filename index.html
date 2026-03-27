@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="card">
+    <h1>🎓 Student Performance Dashboard</h1>
+
+    <input type="text" id="name" placeholder="Enter Student Name">
+
+    <div class="inputs">
+        <input type="number" id="m1" placeholder="Subject 1">
+        <input type="number" id="m2" placeholder="Subject 2">
+        <input type="number" id="m3" placeholder="Subject 3">
+        <input type="number" id="m4" placeholder="Subject 4">
+        <input type="number" id="m5" placeholder="Subject 5">
+    </div>
+
+    <button onclick="calculate()">Generate Report</button>
+
+    <div id="result" class="result-box"></div>
+
+    <canvas id="chart"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>

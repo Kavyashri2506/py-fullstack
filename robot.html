@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Pro Dancing Robot</title>
+
+    <style>
+        body {
+            text-align: center;
+            background: #0f0f0f;
+            color: white;
+            font-family: Arial;
+        }
+
+        /* Robot */
+        .robot {
+            margin: 80px auto;
+            width: 120px;
+        }
+
+        /* Head */
+        .head {
+            width: 80px;
+            height: 60px;
+            background: #00ffc3;
+            margin: auto;
+            border-radius: 10px;
+        }
+
+        /* Body */
+        .body {
+            width: 120px;
+            height: 130px;
+            background: #00cc99;
+            margin-top: 10px;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        /* Arms */
+        .arm {
+            width: 20px;
+            height: 90px;
+            background: #00ffc3;
+            position: absolute;
+            top: 10px;
+            transform-origin: top;
+        }
+
+        .left-arm {
+            left: -25px;
+        }
+
+        .right-arm {
+            right: -25px;
+        }
+
+        /* Legs */
+        .leg {
+            width: 20px;
+            height: 90px;
+            background: #00ffc3;
+            position: absolute;
+            bottom: -90px;
+            transform-origin: top;
+        }
+
+        .left-leg {
+            left: 25px;
+        }
+
+        .right-leg {
+            right: 25px;
+        }
+
+        /* 🔥 PRO DANCE ANIMATIONS */
+
+        /* Full body bounce */
+        .dance .robot {
+            animation: bounce 0.6s infinite;
+        }
+
+        /* Head groove */
+        .dance .head {
+            animation: headMove 0.5s infinite alternate;
+        }
+
+        /* Arms freestyle */
+        .dance .left-arm {
+            animation: armLeft 0.4s infinite;
+        }
+
+        .dance .right-arm {
+            animation: armRight 0.4s infinite;
+        }
+
+        /* Legs groove */
+        .dance .left-leg {
+            animation: legLeft 0.4s infinite;
+        }
+
+        .dance .right-leg {
+            animation: legRight 0.4s infinite;
+        }
+
+        /* Keyframes */
+
+        @keyframes bounce {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        @keyframes headMove {
+            0% {
+                transform: rotate(-10deg);
+            }
+
+            100% {
+                transform: rotate(10deg);
+            }
+        }
+
+        @keyframes armLeft {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            50% {
+                transform: rotate(120deg);
+            }
+
+            100% {
+                transform: rotate(-20deg);
+            }
+        }
+
+        @keyframes armRight {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            50% {
+                transform: rotate(-120deg);
+            }
+
+            100% {
+                transform: rotate(20deg);
+            }
+        }
+
+        @keyframes legLeft {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            50% {
+                transform: rotate(-60deg);
+            }
+
+            100% {
+                transform: rotate(20deg);
+            }
+        }
+
+        @keyframes legRight {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            50% {
+                transform: rotate(60deg);
+            }
+
+            100% {
+                transform: rotate(-20deg);
+            }
+        }
+
+        /* Buttons */
+        button {
+            padding: 12px 25px;
+            margin: 10px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .start {
+            background: #00cc66;
+            color: white;
+        }
+
+        .stop {
+            background: #ff4444;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>🤖 Pro Dancing Robot</h1>
+
+    <div id="container">
+        <div id="robot" class="robot">
+            <div class="head"></div>
+            <div class="body">
+                <div class="arm left-arm"></div>
+                <div class="arm right-arm"></div>
+                <div class="leg left-leg"></div>
+                <div class="leg right-leg"></div>
+            </div>
+        </div>
+    </div>
+
+    <button class="start" onclick="startDance()">Start Dance</button>
+    <button class="stop" onclick="stopDance()">Stop Dance</button>
+
+    <script>
+        function startDance() {
+            document.getElementById("container").classList.add("dance");
+        }
+
+        function stopDance() {
+            document.getElementById("container").classList.remove("dance");
+        }
+    </script>
+
+</body>
+
+</html>

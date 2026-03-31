@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriSense | Advanced Smart Farming</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <i class="ph ph-leaf"></i> AgriSense
+        </div>
+        <div class="nav-links">
+            <a href="#recommend">Smart Engine</a>
+            <a href="#profit">Yield Estimator</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Hybrid Farming Intelligence.</h1>
+            <p>Combining ML predictions & Agronomic rules for multi-crop planning, seasonal strategy, and profit estimation.</p>
+            <a href="#recommend" class="btn-primary">Analyze Field Data</a>
+        </div>
+    </header>
+
+    <main class="container advanced-container">
+        
+        <!-- Deep Input Form -->
+        <section id="recommend" class="card crop-recommender full-width">
+            <div class="card-header">
+                <h2><i class="ph ph-cpu"></i> Advanced Hybrid Engine</h2>
+                <p>Enter comprehensive environmental & soil data for highest accuracy.</p>
+            </div>
+            
+            <form id="recommendation-form" class="advanced-form">
+                <!-- Location & Basics -->
+                <div class="form-group">
+                    <label>Location (State)</label>
+                    <select id="location" required>
+                        <option value="General">General / Other</option>
+                        <option value="Tamil Nadu">Tamil Nadu</option>
+                        <option value="Maharashtra">Maharashtra</option>
+                        <option value="Punjab">Punjab</option>
+                        <option value="Gujarat">Gujarat</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Soil Type</label>
+                    <select id="soil" required>
+                        <option value="loamy">Loamy</option>
+                        <option value="clay">Clay</option>
+                        <option value="sandy">Sandy</option>
+                        <option value="silt">Silt</option>
+                    </select>
+                </div>
+                
+                <!-- Weather -->
+                <div class="form-group">
+                    <label>Temperature (°C)</label>
+                    <input type="number" id="temp" value="28" required>
+                </div>
+                <div class="form-group">
+                    <label>Rainfall (mm)</label>
+                    <input type="number" id="rain" value="120" required>
+                </div>
+                <div class="form-group">
+                    <label>Humidity (%)</label>
+                    <input type="number" id="humidity" value="65" required>
+                </div>
+                
+                <!-- Advanced Soil -->
+                <div class="form-group">
+                    <label>pH Level</label>
+                    <input type="number" id="ph" step="0.1" value="6.5" required>
+                </div>
+                <div class="form-group">
+                    <label>Nitrogen (N) <span class="badge">mg/kg</span></label>
+                    <input type="number" id="nitrogen" placeholder="Optional">
+                </div>
+                <div class="form-group">
+                    <label>Phosphorous (P) <span class="badge">mg/kg</span></label>
+                    <input type="number" id="phosphorus" placeholder="Optional">
+                </div>
+                <div class="form-group">
+                    <label>Potassium (K) <span class="badge">mg/kg</span></label>
+                    <input type="number" id="potassium" placeholder="Optional">
+                </div>
+                
+                <button type="submit" class="btn-secondary full-btn">Initiate Hybrid Analysis</button>
+            </form>
+        </section>
+
+        <!-- Advanced Results Dashboard -->
+        <div id="advanced-dashboard" class="dashboard-grid hidden">
+            
+            <!-- 1. Top ML Predictions -->
+            <section class="card results-panel ml-predictions">
+                <div class="card-header">
+                    <h2><i class="ph ph-target"></i> ML Crop Predictions</h2>
+                    <p>Suitability scores based on your inputs.</p>
+                </div>
+                <div id="crop-ranks" class="crop-ranks-list">
+                    <!-- Injected via JS -->
+                </div>
+            </section>
+            
+            <!-- 2. Smart Alerts -->
+            <section class="card results-panel advisory-panel">
+                <div class="card-header">
+                    <h2><i class="ph ph-warning"></i> Environment Advisory</h2>
+                    <p>Rule-based risk analysis.</p>
+                </div>
+                <div id="alert-box" class="alert-box">
+                    <!-- Injected via JS -->
+                </div>
+            </section>
+            
+            <!-- 3. Seasonal Planner -->
+            <section class="card results-panel full-width seasonal-panel">
+                 <div class="card-header">
+                    <h2><i class="ph ph-calendar-check"></i> 12-Month Seasonal Plan</h2>
+                    <p>Year-round maximization strategy.</p>
+                </div>
+                <div class="seasonal-cards">
+                    <div class="season-card summer">
+                        <h3><i class="ph ph-sun"></i> Summer</h3>
+                        <ul id="summer-crops"></ul>
+                    </div>
+                    <div class="season-card kharif">
+                        <h3><i class="ph ph-cloud-rain"></i> Rainy (Kharif)</h3>
+                        <ul id="kharif-crops"></ul>
+                    </div>
+                    <div class="season-card rabi">
+                        <h3><i class="ph ph-snowflake"></i> Winter (Rabi)</h3>
+                        <ul id="rabi-crops"></ul>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- 4. Crop Rotation -->
+            <section class="card results-panel full-width rotation-panel">
+                 <div class="card-header">
+                    <h2><i class="ph ph-arrows-clockwise"></i> Rotation Recommendation</h2>
+                </div>
+                <div class="rotation-message">
+                    <i class="ph ph-plant green-icon"></i>
+                    <p id="rotation-text">Loading...</p>
+                </div>
+            </section>
+
+        </div> <!-- End dashboard grid -->
+
+        <!-- Profit Estimator -->
+        <section id="profit" class="card profit-estimator full-width">
+    <div class="card-header">
+        <h2><i class="ph ph-currency-circle-dollar"></i> Profit & Yield Estimation</h2>
+        <p>Calculate expected ROI for your top crops.</p>
+    </div>
+
+    <form id="profit-form" class="advanced-form">
+        <div class="form-group">
+            <label>Land Area (Acres)</label>
+            <input type="number" id="area" value="5" min="1">
+        </div>
+
+        <div class="form-group">
+            <label>Predict for Crop</label>
+            <select id="profit-crop">
+                <option value="wheat">Wheat</option>
+                <option value="rice">Rice</option>
+                <option value="maize">Maize</option>
+            </select>
+        </div>
+
+        <button type="button" class="btn-primary"
+        onclick="alert('Hybrid Estimation Engine:\n\nExpected Yield: 18 tons\nMarket Price Estimate: ₹3,90,000\nExpected Costs: ₹1,10,000\n\nProjected Profit: ₹2,80,000')">
+        Estimate Yield
+        </button>
+    </form>
+</section>
+            </form>
+        </section>
+        
+    </main>
+    
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
